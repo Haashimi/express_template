@@ -2,11 +2,22 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const port = 3000
-app.set('view engine','ejs')
-app.set('views',path.join(__dirname, '/views'), )
+
+
+app.use(express.static('views'))
+
+// app.set('views',path.join(__dirname, '/views'), )
+// app.set('view engine','ejs')
+
+
+
+// app.use('/css', express.static(__dirname + '/views/assets/css'));
+
+console.log('_dirname ',path.join(__dirname+'/views/index.html'));
 app.get('/',  (req, res) => {
 //   res.send('hello world')
-    res.render('home')
+    // res.render('home')
+    res.sendFile('index.html')
 })
 
 
