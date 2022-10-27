@@ -1,8 +1,8 @@
 const express = require('express')
 const app = express()
 const path = require('path')
-const port = 3000
-
+const port = 3001
+const logger  = require('./logger/logger')
 
 // app.use(express.static('views'))
 app.use(express.static(__dirname + '/public'));
@@ -17,26 +17,25 @@ app.set('view engine','ejs')
 
 app.get('/',  (req, res) => {
 //   res.send('hello world')
-    res.render('login')
-    // res.sendFile(path.join(__dirname+'/views/login.ejs'))
+
+res.render('signin')
+  
+    
 })
+
+
 
 app.get('/home',  (req, res) => {
     //   res.send('hello world')
-        res.render('index')
-        // res.sendFile(path.join(__dirname+'/views/login.ejs'))
+    
+    res.render('index')
+      
+        
     })
+
     
 
-app.get('/rand', (req,res)=>{
-    const num = Math.floor(Math.random()*10)+1;
-    res.render('random', {num})
-})
 
-app.get('/r/:subred', (req,res)=>{
-    const {subred} = req.params
-    res.render('subred',{subred})
-})
 app.listen(port, ()=>{
-    console.log('App listening on '+port);
+    logger.info('App listening on '+port);
 })
